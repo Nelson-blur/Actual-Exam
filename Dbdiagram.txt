@@ -1,0 +1,56 @@
+Table AspNetUserTokens {
+  UserId string [primary key]
+  LoginProvider string
+  Name string 
+  Value string 
+}
+
+Table AspNetUsers {
+  id string [primary key]
+  username string
+  NormalizedUserName string
+  EmailConfirmed boolean
+  PasswordHash string
+  SecurityStamp string
+  ConcurrencyStamp string
+  PhoneNumber string
+  PhoneNumberConfirmed boolean
+  TwoFactorEnabled boolean
+  LockoutEnd datetime
+  LockoutEnabled boolean
+  AccessFailedCount integer
+}
+
+Table AspNetRoles {
+  Id string [primary key]
+  Name string
+  NormalizedName string
+  ConcurrencyStamp string
+}
+
+Table AspNetUserRoles {
+  Id string [primary key] 
+  UserId string
+  RoleId string
+}
+
+Table AspNetUserClaims {
+  Id string [primary key] 
+  UserId string
+  ClaimType string
+  ClaimValue string
+}
+ 
+Table AspNetRoleClaims {
+  Id string [primary key] 
+  UserId string
+  ClaimType string
+  ClaimValue string
+}
+
+Table AspNetUserLogins {
+  LoginProvider string
+  ProviderKey string
+  ProviderDisplayName string
+  UserId string
+}
