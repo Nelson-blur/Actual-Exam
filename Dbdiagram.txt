@@ -43,7 +43,7 @@ Table AspNetUserClaims {
  
 Table AspNetRoleClaims {
   Id string [primary key] 
-  UserId string
+  RoleId string
   ClaimType string
   ClaimValue string
 }
@@ -54,3 +54,106 @@ Table AspNetUserLogins {
   ProviderDisplayName string
   UserId string
 }
+
+Table Orders {
+ OrdersId integer [primary key]
+ DiscountsId integrer
+ UserId string 
+ OrderDate datetime
+ OrderStatus datetime
+ DeliveryMethod string
+ DeliveryDate datetime
+ DeliveryAddress datetime
+ DeliveryFee datetime
+ UsedDiscount boolean
+}
+
+Table OrderProducts {
+ OrderProductsId integer [Primary Key]
+ OrdersId integer
+ ProductsId integer
+ Quantity integer
+}
+
+Table Basket {
+ BasketId integer [primary key]
+ UserId string 
+}
+
+Table BasketProducts {
+ BasketProductsId integer [primary key]
+ BasketId integer
+ ProductsId integer
+ Quantity integer
+}
+
+Table Producers {
+  ProducersId integer [Primary Key]
+  UserId string
+  ProducerName string 
+  Description string
+  BusinessLocation string
+  ContactEmail string
+}
+
+Table Products {
+  ProductsId integer [Primary Key]
+  ProducersId integer
+  ProductName integer
+  Price float
+  Stock integer
+  Description string
+  CreatedAt datetime
+  UpdatedAt datetime
+  IsAvailable boolean 
+  AllergenInformation string
+  FarmingMethod string
+  ImageUrl string
+
+}
+
+Table Discounts {
+  DiscountsId integer [primary key]
+  DiscountName string
+  DiscountCode string
+  DiscountPercentage string
+  IsActive boolean
+
+}
+
+
+
+Ref: "AspNetUsers"."id" < "AspNetUserRoles"."UserId"
+
+
+
+Ref: "AspNetUsers"."id" < "Basket"."UserId"
+
+Ref: "AspNetUsers"."id" < "Producers"."UserId"
+
+
+Ref: "AspNetUsers"."id" < "AspNetUserClaims"."UserId"
+
+Ref: "AspNetRoles"."Id" < "AspNetUserRoles"."RoleId"
+
+Ref: "AspNetRoles"."Id" < "AspNetRoleClaims"."RoleId"
+
+Ref: "AspNetUsers"."id" < "AspNetUserLogins"."UserId"
+
+
+
+Ref: "Producers"."ProducersId" < "Products"."ProducersId"
+
+Ref: "Orders"."OrdersId" < "OrderProducts"."OrdersId"
+
+Ref: "Products"."ProductsId" < "OrderProducts"."ProductsId"
+
+Ref: "Basket"."BasketId" < "BasketProducts"."BasketId"
+
+Ref: "Products"."ProductsId" < "BasketProducts"."ProductsId"
+
+Ref: "Discounts"."DiscountsId" < "Orders"."DiscountsId"
+
+Ref: "AspNetUsers"."id" < "Orders"."UserId"
+
+Ref: "AspNetUsers"."id" < "AspNetUserTokens"."UserId"
