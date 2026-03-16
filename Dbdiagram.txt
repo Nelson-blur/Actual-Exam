@@ -99,7 +99,7 @@ Table Producers {
 Table Products {
   ProductsId integer [Primary Key]
   ProducersId integer
-  ProductName integer
+  ProductName string
   Price float
   Stock integer
   Description string
