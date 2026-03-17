@@ -29,20 +29,20 @@ Table AspNetRoles {
 }
 
 Table AspNetUserRoles {
-  Id string [primary key] 
+  Id integer [primary key] 
   UserId string
   RoleId string
 }
 
 Table AspNetUserClaims {
-  Id string [primary key] 
+  Id integer [primary key] 
   UserId string
   ClaimType string
   ClaimValue string
 }
  
 Table AspNetRoleClaims {
-  Id string [primary key] 
+  Id integer [primary key] 
   RoleId string
   ClaimType string
   ClaimValue string
@@ -57,15 +57,16 @@ Table AspNetUserLogins {
 
 Table Orders {
  OrdersId integer [primary key]
- DiscountsId integrer
+ DiscountsId integer
  UserId string 
  OrderDate datetime
- OrderStatus datetime
+ OrderStatus string
  DeliveryMethod string
  DeliveryDate datetime
- DeliveryAddress datetime
- DeliveryFee datetime
+ DeliveryAddress string
+ DeliveryFee float
  UsedDiscount boolean
+ TotalAmount float
 }
 
 Table OrderProducts {
@@ -116,7 +117,7 @@ Table Discounts {
   DiscountsId integer [primary key]
   DiscountName string
   DiscountCode string
-  DiscountPercentage string
+  DiscountPercentage float
   IsActive boolean
 
 }
